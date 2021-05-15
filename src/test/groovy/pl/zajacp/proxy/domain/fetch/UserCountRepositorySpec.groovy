@@ -28,31 +28,25 @@ class UserCountRepositorySpec extends Specification {
     @Autowired
     JdbcTemplate jdbcTemplate
 
-    def "Validate incrementing users"() {
-        given: "Logins with different fetch numbers"
-        def loginsFetched =
-                ["bob_m" : 5,
-                 "mary98": 2,
-                 "danelS": 1]
+    def "Validate incrementing user count"() {
+        when: "Function is invoked defined times per login"
+        (1..fetchesNumber).each { repository.incrementAndGetLoginCount(loginToFetch) }
 
-        when: "function is invoked X times per login"
-        loginsFetched.each { login, fetches ->
-            (1..fetches).each { repository.incrementAndGetLoginCount(login) }
-        }
+        then: "Proper count value is stored in db"
+        doesLoginExistInDb(loginToFetch)
+        getLoginFetchCount(loginToFetch) == fetchesNumber
 
-        then: "Proper counter value is stored in db"
-        loginsFetched.each { login, fetches ->
-            doesLoginExistInDb(login)
-            getLoginFetchCount(login) == fetches
-        }
-
-        and: "No other login exists in db"
-        !doesLoginExistInDb("any other login")
+        where:
+        loginToFetch | fetchesNumber
+        "bob_m"      | 5
+        "mary98"     | 2
+        "danelS"     | 1
     }
 
     private Integer getLoginFetchCount(String login) {
         def countQuery = "SELECT request_count FROM user_proxy.fetch_stats WHERE login = ?"
-        return jdbcTemplate.queryForObject(countQuery, Integer.class, login);
+        return Try.of(() -> jdbcTemplate.queryForObject(countQuery, Integer.class, login))
+                .getOrElseGet(x -> 0)
     }
 
     private boolean doesLoginExistInDb(String login) {
