@@ -32,12 +32,6 @@ public class ChangeLogConfiguration {
         return liquibase;
     }
 
-    @ConfigurationProperties(prefix = "spring.datasource")
-    @Bean
-    public DataSource dataSource() {
-        return DataSourceBuilder.create().build();
-    }
-
     @Component
     @EnableConfigurationProperties
     @ConfigurationProperties(prefix = "spring.liquibase")
