@@ -1,0 +1,81 @@
+openapi: 3.0.3
+info:
+  version: '1.0'
+  title: User data proxy API
+servers:
+  - url: http://localhost:8080/
+paths:
+  /users/{login}:
+    get:
+      summary: Fetches user data from GitHub
+      tags:
+        - UserData
+      operationId: fetchUserData
+      parameters:
+        - in: path
+          name: login
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Fetch successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDataResponse'
+        '400':
+          description: Bad request.
+        '404':
+          description: Not found.
+        '500':
+          description: Internal server error.
+
+components:
+  schemas:
+    UserDataResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        login:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        avatarUrl:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        calculations:
+          type: number
+          format: double
+    GithubUserData:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        login:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        avatarUrl:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        followers:
+          type: integer
+          format: int32
+        publicRepos:
+          type: integer
+          format: int32
+
+tags:
+  - name: UserData
