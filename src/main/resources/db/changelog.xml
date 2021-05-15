@@ -11,4 +11,12 @@
                  stripComments="true"/>
         <comment>create initial database schema</comment>
     </changeSet>
+
+    <changeSet author="zajacp" id="2">
+        <sqlFile path="incr_fetch_counter.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+        <comment>create increase fetch counter function</comment>
+    </changeSet>
 </databaseChangeLog>
