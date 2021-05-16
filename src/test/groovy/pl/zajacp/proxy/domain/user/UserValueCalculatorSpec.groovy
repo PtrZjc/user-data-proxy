@@ -1,10 +1,10 @@
-package pl.zajacp.proxy.domain.fetch
+package pl.zajacp.proxy.domain.user
 
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
 
-import static pl.zajacp.proxy.domain.fetch.UserValueCalculator.calculateValue
+import static pl.zajacp.proxy.domain.user.UserValueCalculator.calculateValue
 
 @Subject(UserValueCalculator)
 class UserValueCalculatorSpec extends Specification {

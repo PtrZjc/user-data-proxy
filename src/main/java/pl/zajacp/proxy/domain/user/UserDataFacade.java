@@ -1,11 +1,11 @@
-package pl.zajacp.proxy.domain.fetch;
+package pl.zajacp.proxy.domain.user;
 
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.zajacp.proxy.domain.fetch.model.GithubUserData;
+import pl.zajacp.proxy.domain.user.model.GithubUserData;
 import pl.zajacp.proxy.model.UserDataResponse;
 
 @Slf4j

@@ -1,4 +1,4 @@
-package pl.zajacp.proxy.domain.fetch;
+package pl.zajacp.proxy.domain.user;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

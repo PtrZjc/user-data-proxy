@@ -1,4 +1,4 @@
-package pl.zajacp.proxy.domain.fetch
+package pl.zajacp.proxy.domain.user
 
 import io.vavr.control.Try
 import org.springframework.beans.factory.annotation.Autowired

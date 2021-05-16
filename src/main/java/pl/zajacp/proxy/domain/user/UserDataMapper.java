@@ -1,10 +1,10 @@
-package pl.zajacp.proxy.domain.fetch;
+package pl.zajacp.proxy.domain.user;
 
 import org.mapstruct.Builder;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import pl.zajacp.proxy.domain.fetch.model.GithubUserData;
+import pl.zajacp.proxy.domain.user.model.GithubUserData;
 import pl.zajacp.proxy.model.UserDataResponse;
 
 @Mapper(componentModel = "spring",
