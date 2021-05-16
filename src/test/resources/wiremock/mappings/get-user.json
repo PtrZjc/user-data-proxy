@@ -1,0 +1,45 @@
+{
+  "mappings": [
+    {
+      "name": "Get existing user data",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPattern": "/users/(ptrzjc|octocat)"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "login_{{request.path.[1]}}.json"
+      }
+    },
+    {
+      "name": "Get 404 response",
+      "priority": 10,
+      "request": {
+        "method": "GET",
+        "urlPattern": "/users/.*"
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "login_404.json"
+      }
+    },
+    {
+      "name": "Get 500 response",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPattern": "/users/500"
+      },
+      "response": {
+        "status": 500
+      }
+    }
+  ]
+}
