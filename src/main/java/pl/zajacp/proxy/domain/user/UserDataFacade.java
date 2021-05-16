@@ -11,7 +11,7 @@ import pl.zajacp.proxy.model.UserDataResponse;
 @Slf4j
 @AllArgsConstructor
 @Service
-public class UserDataFacade {
+class UserDataFacade {
 
     private final UserCountRepository repository;
     private final GithubClient client;

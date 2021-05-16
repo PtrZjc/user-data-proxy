@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 
 import static java.util.Objects.isNull;
 
-public class UserValueCalculator {
+class UserValueCalculator {
 
     public static Double calculateValue(Integer followers, Integer publicRepos) {
         var x = isNull(followers) || isNull(publicRepos)
