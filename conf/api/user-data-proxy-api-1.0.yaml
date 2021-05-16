@@ -24,13 +24,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserDataResponse'
-        '400':
-          description: Bad request.
         '404':
           description: Not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
-
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service unavailable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     UserDataResponse:
@@ -53,6 +64,13 @@ components:
         calculations:
           type: number
           format: double
-
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+          format: int32
 tags:
   - name: UserData
