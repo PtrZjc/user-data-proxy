@@ -1,5 +1,6 @@
 package pl.zajacp.proxy.domain.user
 
+
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll

@@ -16,8 +16,8 @@ import spock.lang.Unroll
 @Subject(GithubClient)
 @Narrative("""
 This test check proper response mapping of Github client.
-It is based on defined stubs located under 'wiremock.base-folder' property.
-Logins "ptrzjc" and "octocat" return respose, all other return 404.
+It is based on defined wiremock stubs:
+Logins "ptrzjc" and "octocat" return respose, "500" returns 500 response, all other return 404.
 
 Error messages are handled separately - via RestControllerAdvice
 """)
