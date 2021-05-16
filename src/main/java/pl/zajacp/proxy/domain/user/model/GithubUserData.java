@@ -1,4 +1,4 @@
-package pl.zajacp.proxy.domain.fetch.model;
+package pl.zajacp.proxy.domain.user.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;

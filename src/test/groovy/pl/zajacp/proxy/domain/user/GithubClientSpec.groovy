@@ -1,4 +1,4 @@
-package pl.zajacp.proxy.domain.fetch
+package pl.zajacp.proxy.domain.user
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -8,7 +8,6 @@ import org.springframework.web.client.HttpServerErrorException
 import pl.zajacp.proxy.infrastructure.AppConfig
 import pl.zajacp.proxy.infrastructure.api.ApiConfig
 import pl.zajacp.proxy.infrastructure.api.ExternalPathProperties
-import pl.zajacp.proxy.test.config.WiremockConfig
 import spock.lang.Narrative
 import spock.lang.Specification
 import spock.lang.Subject
@@ -17,13 +16,13 @@ import spock.lang.Unroll
 @Subject(GithubClient)
 @Narrative("""
 This test check proper response mapping of Github client.
-It is based on defined stubs located under 'wiremock.base-folder' property.
-Logins "ptrzjc" and "octocat" return respose, all other return 404.
+It is based on defined wiremock stubs:
+Logins "ptrzjc" and "octocat" return respose, "500" returns 500 response, all other return 404.
 
 Error messages are handled separately - via RestControllerAdvice
 """)
-@AutoConfigureWireMock(port = 9998)
-@SpringBootTest(classes = [GithubClientImpl, WiremockConfig, ApiConfig, ExternalPathProperties, AppConfig])
+@AutoConfigureWireMock(port = 9998, files = "file:src/test/resources/wiremock")
+@SpringBootTest(classes = [GithubClientImpl, ApiConfig, ExternalPathProperties, AppConfig])
 class GithubClientSpec extends Specification {
 
     @Autowired
@@ -56,15 +55,15 @@ class GithubClientSpec extends Specification {
         when: "Non existing user data is fetched"
         client.fetchUserData("Not existing login")
 
-        then: "All fields are mapped correctly"
+        then:
         thrown(HttpClientErrorException.NotFound)
     }
 
     def "Check internal server error response"() {
-        when: "Non existing user data is fetched"
+        when: "Server error occurs"
         client.fetchUserData("500")
 
-        then: "All fields are mapped correctly"
+        then:
         thrown(HttpServerErrorException.InternalServerError)
     }
 }

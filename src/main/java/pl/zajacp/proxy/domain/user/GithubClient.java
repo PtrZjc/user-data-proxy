@@ -1,10 +1,10 @@
-package pl.zajacp.proxy.domain.fetch;
+package pl.zajacp.proxy.domain.user;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import pl.zajacp.proxy.domain.fetch.model.GithubUserData;
+import pl.zajacp.proxy.domain.user.model.GithubUserData;
 import pl.zajacp.proxy.infrastructure.api.ExternalPathProperties;
 
 
@@ -22,7 +22,7 @@ class GithubClientImpl implements GithubClient {
 
     @Override
     public GithubUserData fetchUserData(String login) {
-        log.info("Fetching user data for login {}", login);
+        log.info("Fetching user '{}' data", login);
         return restTemplate.getForObject(getUserResourceUrl(login), GithubUserData.class);
     }
 

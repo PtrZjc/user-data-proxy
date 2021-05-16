@@ -1,18 +1,33 @@
 {
   "mappings": [
     {
-      "name": "Get existing user data",
+      "name": "Get existing user data - ptrzjc",
       "priority": 5,
       "request": {
         "method": "GET",
-        "urlPattern": "/users/(ptrzjc|octocat)"
+        "url": "/users/ptrzjc"
       },
       "response": {
         "status": 200,
         "headers": {
           "Content-Type": "application/json"
         },
-        "bodyFileName": "login_{{request.path.[1]}}.json"
+        "bodyFileName": "login_ptrzjc.json"
+      }
+    },
+    {
+      "name": "Get existing user data - octocat",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "url": "/users/octocat"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "login_octocat.json"
       }
     },
     {
