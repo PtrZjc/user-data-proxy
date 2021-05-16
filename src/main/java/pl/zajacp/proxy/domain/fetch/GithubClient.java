@@ -22,7 +22,7 @@ class GithubClientImpl implements GithubClient {
 
     @Override
     public GithubUserData fetchUserData(String login) {
-        log.info("Fetching user data for login {}", login);
+        log.info("Fetching user '{}' data", login);
         return restTemplate.getForObject(getUserResourceUrl(login), GithubUserData.class);
     }
 

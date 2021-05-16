@@ -8,13 +8,16 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @TestConfiguration
-public class JdbcTestConfiguration {
+public class DatabaseTestConfiguration {
 
     @Primary
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
-        return new JdbcTemplate(dataSource);
+        var jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate.execute("CREATE SCHEMA user_proxy");
+        return jdbcTemplate;
     }
+
     @Primary
     @Bean
     public DataSource testContainerDataSource() {

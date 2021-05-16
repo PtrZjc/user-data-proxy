@@ -34,8 +34,7 @@ public class TestContainer {
                     "spring.datasource.username=" + instance.getUsername(),
                     "spring.datasource.password=" + instance.getPassword(),
                     "spring.datasource.driver-class-name=org.postgresql.Driver",
-                    "spring.liquibase.default-data-schema=user_proxy",
-                    "spring.liquibase.default-liquibase-schema=public",
+                    "spring.liquibase.default-schema=user_proxy",
                     "spring.liquibase.change-log=classpath:/db/changelog.xml"
             );
             values.applyTo(configurableApplicationContext);

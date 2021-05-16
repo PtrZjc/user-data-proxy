@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.test.context.ContextConfiguration
 import org.testcontainers.spock.Testcontainers
 import pl.zajacp.proxy.infrastructure.db.ChangeLogConfiguration
-import pl.zajacp.proxy.test.config.JdbcTestConfiguration
+import pl.zajacp.proxy.test.config.DatabaseTestConfiguration
 import pl.zajacp.proxy.test.config.TestContainer
 import spock.lang.Narrative
 import spock.lang.Specification
@@ -18,7 +18,7 @@ import spock.lang.Subject
 This test validates postgres function: increment_fetch_counter(login)
 """)
 @Testcontainers
-@SpringBootTest(classes = [JdbcTestConfiguration, ChangeLogConfiguration, UserCountRepositoryImpl])
+@SpringBootTest(classes = [DatabaseTestConfiguration, ChangeLogConfiguration, UserCountRepositoryImpl])
 @ContextConfiguration(initializers = TestContainer.TestContainersInitializer)
 class UserCountRepositorySpec extends Specification {
 
