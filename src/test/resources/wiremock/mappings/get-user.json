@@ -29,6 +29,17 @@
         },
         "bodyFileName": "login_404.json"
       }
+    },
+    {
+      "name": "Get 500 response",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPattern": "/users/500"
+      },
+      "response": {
+        "status": 500
+      }
     }
   ]
 }
