@@ -1,0 +1,16 @@
+version: '3'
+services:
+
+  user-proxy-db:
+    image: postgres:9.6.22-alpine
+    container_name: user-proxy-db
+    restart: always
+    volumes:
+      - ./src/main/resources/db/init/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    command: ["postgres", "-c", "log_statement=all"]
